@@ -12,7 +12,6 @@ export default {
     km
   },
   props: {
-    msg: String
   }
 };
 </script>
