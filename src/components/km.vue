@@ -135,6 +135,11 @@ button {
   padding: 0.5rem 0.5rem 5px 0.5rem;
   font-size: 1rem;
   color: #526b7f;
+  outline: none;
+}
+
+button:focus {
+  outline: none;
 }
 
 button:hover {
