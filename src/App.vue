@@ -1,7 +1,7 @@
 <template>
 <div class="wrapper">
   <header>
-    <h1>RunningPace<span class="skinny">Chart</span></h1>
+    <img src="./assets/pace2.svg" width="389px" height="100px" >
   </header>
     <Chart></Chart>
 </div>
@@ -21,17 +21,17 @@ export default {
 <style>
 body {
   font-size: 16pt;
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+    font-family: 'Open Sans', sans-serif;
   margin: 0 0 0 0;
 }
 h1 {
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 400;
   margin: 0 0 0 0;
   text-align: center;
 }
 .skinny {
-  font-weight: 200;
+  font-weight: 300;
 }
 .wrapper {
   display: grid;
@@ -39,10 +39,11 @@ h1 {
 header {
   display: grid;
   padding: 0.5rem 0 0.5rem 0;
-  background: linear-gradient(-90deg, #3889a6, #2f9bc2);
-  color: #ffffff;
+  background: #ffffff;
   grid-template-columns: 1fr;
+  height: 132px;
   align-items: center;
+  justify-items: center;
 }
 
 .menu-icon {
