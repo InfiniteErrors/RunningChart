@@ -14,9 +14,9 @@ export default {
   name: "pace",
   components: {},
   props: {
-      pace: Number,
-      unit: Number,
-      isActive: true
+    pace: Number,
+    unit: Number,
+    isActive: true
   },
   methods: {
     convertPace: function(value) {
@@ -46,7 +46,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-
 .pace,
 .five,
 .ten,
@@ -83,9 +82,9 @@ export default {
 }
 
 .active {
-    transition-duration: .3s;
+  transition-duration: 0.3s;
   transition-timing-function: ease;
-    background-color: #FFC700;
+  background-color: rgba(255, 199, 0, 0.6);
+  color: #000000;
 }
-
 </style>

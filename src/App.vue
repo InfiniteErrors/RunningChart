@@ -21,7 +21,7 @@ export default {
 <style>
 body {
   font-size: 16pt;
-    font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   margin: 0 0 0 0;
 }
 h1 {

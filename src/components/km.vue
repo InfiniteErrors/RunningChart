@@ -27,7 +27,7 @@
   </div>
 </template>
 <script>
-import pace from "./pace.vue"
+import pace from "./pace.vue";
 
 const range = (start, length) =>
   Array.from(Array(length).keys()).map((v, i) => start + i * 5);
@@ -65,7 +65,7 @@ nav {
   grid-template-columns: repeat(5, 1fr);
   font-size: 1.2rem;
   text-align: center;
-  color: #8C8C8C;
+  color: #6c6c6c;
 }
 
 .top {
@@ -73,7 +73,7 @@ nav {
   height: 3rem;
   align-items: center;
   font-size: 1.4rem;
-  color: #6C6C6C;
+  color: #5c5c5c;
   position: sticky;
   top: 0;
 }
@@ -86,7 +86,7 @@ button {
   font-size: 1rem;
   padding: 0.5rem 0.5rem 5px 0.5rem;
   font-size: 1rem;
-  color: #8C8C8C;
+  color: #8c8c8c;
   outline: none;
 }
 
@@ -95,25 +95,24 @@ button:focus {
 }
 
 button:hover {
-  transition-duration: .5s;
+  transition-duration: 0.5s;
   transition-timing-function: ease;
-  background-color: #FFC700;
+  background-color: #ffc700;
   cursor: pointer;
 }
 
- @media only screen and (max-width: 445px) {
-    .row {
-        font-size: .9rem;
-    }
-    .top {
-      font-size: 1.1rem;
-    }
-    nav{
-      grid-template-columns: 125px 125px;
-    }
-    img{
-      width: 300px;
-    }
+@media only screen and (max-width: 445px) {
+  .row {
+    font-size: 0.9rem;
+  }
+  .top {
+    font-size: 1.1rem;
+  }
+  nav {
+    grid-template-columns: 125px 125px;
+  }
+  img {
+    width: 300px;
+  }
 }
-
 </style>
