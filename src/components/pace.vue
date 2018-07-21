@@ -53,6 +53,8 @@ export default {
 .half,
 .full {
   padding: 0.5rem 0 0.5rem 0;
+  user-select: none;
+  cursor: pointer;
 }
 
 .pace {

@@ -73,7 +73,7 @@ nav {
   height: 3rem;
   align-items: center;
   font-size: 1.4rem;
-  color: #8C8C8C;
+  color: #6C6C6C;
   position: sticky;
   top: 0;
 }
