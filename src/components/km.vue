@@ -1,11 +1,11 @@
 <template>
   <div>
     <nav>
-    <button v-on:click="view = 0" type="submit">🇨🇦 Kilometres</button>
-    <button v-on:click="view = 1" type="submit">🇺🇸 Miles</button>
+    <button v-on:click="unit = 0" type="submit">🇨🇦 Kilometres</button>
+    <button v-on:click="unit = 1" type="submit">🇺🇸 Miles</button>
     </nav>
 
-    <div v-if="view === 0" class="row top">
+    <div v-if="unit === 0" class="row top">
       <div> 1km </div>
       <div> 5km </div>
       <div> 10km </div>
@@ -13,7 +13,7 @@
       <div> 42km </div>
     </div>
 
-    <div v-if="view === 1" class="row top">
+    <div v-if="unit === 1" class="row top">
       <div> 1 Mile </div>
       <div> 3.1m </div>
       <div> 6.2m</div>
@@ -21,9 +21,9 @@
       <div> 26.2m </div>
     </div>
 
-    <div class="row" v-for="pace in paces">
-      <div v-if="view === 0" class="pace"> {{ convertPace(pace) }} </div>
-      <div v-if="view === 1" class="pace"> {{ convertPace(pace * 1.621) }} </div>
+    <div :data-pace="pace" v-on:click="toggleStyle(pace)" class="row" v-for="pace in paces">
+      <div v-if="unit === 0" class="pace"> {{ convertPace(pace) }} </div>
+      <div v-if="unit === 1" class="pace"> {{ convertPace(pace * 1.621) }} </div>
       <div class="five"> {{ convertTime5k(pace * 5) }} </div>
       <div class="ten"> {{ convertTime(pace * 10) }} </div>
       <div class="half"> {{ convertTime(pace * 21.0975) }} </div>
@@ -41,7 +41,7 @@ export default {
   data: function() {
     return {
       paces: range(155, 66),
-      view: 0
+      unit: 0
     };
   },
   methods: {
@@ -65,7 +65,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
 h1 {
   color: hsl(0, 0%, 90%);
 }
@@ -90,7 +90,7 @@ nav {
 .ten,
 .half,
 .full {
-  padding: 0.5rem 0 0 0;
+  padding: 0.5rem 0 0.5rem 0;
 }
 
 .pace {
@@ -131,7 +131,7 @@ button {
   background: none;
   border: 1px solid #3889a6;
   border-radius: 4px;
-  font-size: 1.25em;
+  font-size: 1rem;
   padding: 0.5rem 0.5rem 5px 0.5rem;
   font-size: 1rem;
   color: #526b7f;
@@ -144,4 +144,18 @@ button:hover {
   color: #ffffff;
   cursor: pointer;
 }
+
+.active {
+  border-bottom: 4px red solid;
+}
+
+ @media only screen and (max-width: 425px) {
+    .row {
+        font-size: .9rem;
+    }
+    .top {
+      font-size: 1.1rem;
+    }
+}
+
 </style>

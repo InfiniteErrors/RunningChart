@@ -10,8 +10,6 @@ export default {
   name: "Chart",
   components: {
     km
-  },
-  props: {
   }
 };
 </script>
