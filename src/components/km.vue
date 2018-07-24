@@ -20,14 +20,19 @@
       <div> 26.2m </div>
     </div>
 
-    <div v-for="pace in paces">
-      <pace :unit="unit" :pace="pace" class="row"></pace>
+    <div v-if="unit === 0" v-for="kmPace in kmPaces">
+      <kmPace :unit="unit" :pace="kmPace" class="row"></kmPace>
+    </div>
+
+    <div v-if="unit === 1" v-for="milePace in milePaces">
+      <milePace :unit="unit" :pace="milePace" class="row"></milePace>
     </div>
 
   </div>
 </template>
 <script>
-import pace from "./pace.vue";
+import kmPace from "./kmPace.vue";
+import milePace from "./milePace.vue";
 
 const range = (start, length) =>
   Array.from(Array(length).keys()).map((v, i) => start + i * 5);
@@ -35,11 +40,13 @@ const range = (start, length) =>
 export default {
   name: "km",
   components: {
-    pace
+    kmPace,
+    milePace
   },
   data: function() {
     return {
-      paces: range(155, 66),
+      kmPaces: range(155, 66),
+      milePaces: range(230, 70),
       unit: 0
     };
   },
