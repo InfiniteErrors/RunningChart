@@ -8,8 +8,8 @@
       <div> 1km </div>
       <div> 5km </div>
       <div> 10km </div>
-      <div> 21km </div>
-      <div> 42km </div>
+      <div> 21.1km </div>
+      <div> 42.2km </div>
     </div>
 
     <div v-if="unit === 1" class="row top">
