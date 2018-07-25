@@ -1,7 +1,7 @@
 <template>
 <div class="wrapper">
   <header>
-    <img src="./assets/pace2.svg" width="389px" height="100px" >
+    <img src="https://res.cloudinary.com/rlntlss/image/upload/v1532549706/pace2.svg" width="389px" height="100px" >
   </header>
     <Chart></Chart>
 </div>
