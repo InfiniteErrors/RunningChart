@@ -1,11 +1,10 @@
 <template>
-<div @click="toggleActive()">
-  <div class="pace"> {{ convertPace(pace) }} </div>
-      <div :class="{ 'active': isActive }" v-if="unit === 1" class="pace"> {{ convertPace(pace * 1.621371) }} </div>
-      <div class="five"> {{ convertTime5k(pace * 5) }} </div>
-      <div class="ten"> {{ convertTime(pace * 10) }} </div>
-      <div class="half"> {{ convertTime(pace * 21.0975) }} </div>
-      <div class="full"> {{ convertTime(pace * 42.195) }} </div>
+<div @click="toggleActive()" >
+  <div class="pace" :class="{ 'active': isActive }"> {{ convertPace(pace) }} </div>
+      <div class="five" :class="{ 'active': isActive }"> {{ convertTime5k(pace * 5) }} </div>
+      <div class="ten" :class="{ 'active': isActive }"> {{ convertTime(pace * 10) }} </div>
+      <div class="half" :class="{ 'active': isActive }"> {{ convertTime(pace * 21.0975) }} </div>
+      <div class="full" :class="{ 'active': isActive }"> {{ convertTime(pace * 42.195) }} </div>
 </div>
 </template>
 
@@ -16,7 +15,7 @@ export default {
   props: {
     pace: Number,
     unit: Number,
-    isActive: true
+    isActive: false
   },
   methods: {
     convertPace: function(value) {

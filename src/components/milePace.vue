@@ -1,10 +1,10 @@
 <template>
 <div @click="toggleActive()">
-  <div class="pace"> {{ convertPace(pace) }} </div>
-      <div class="five"> {{ convertTime5k(pace * 3.10686) }} </div>
-      <div class="ten"> {{ convertTime(pace * 6.21371) }} </div>
-      <div class="half"> {{ convertTime(pace * 13.1094) }} </div>
-      <div class="full"> {{ convertTime(pace * 26.2188) }} </div>
+  <div class="pace" :class="{ 'active': isActive }"> {{ convertPace(pace) }} </div>
+      <div class="five" :class="{ 'active': isActive }"> {{ convertTime5k(pace * 3.10686) }} </div>
+      <div class="ten" :class="{ 'active': isActive }"> {{ convertTime(pace * 6.21371) }} </div>
+      <div class="half" :class="{ 'active': isActive }"> {{ convertTime(pace * 13.1094) }} </div>
+      <div class="full" :class="{ 'active': isActive }"> {{ convertTime(pace * 26.2188) }} </div>
 </div>
 </template>
 
