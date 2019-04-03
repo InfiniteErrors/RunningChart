@@ -45,8 +45,8 @@ export default {
   },
   data: function() {
     return {
-      kmPaces: range(155, 66),
-      milePaces: range(230, 70),
+      kmPaces: range(155, 75),
+      milePaces: range(230, 75),
       unit: 0
     };
   },
