@@ -1,45 +1,56 @@
 <template>
-<div @click="toggleActive()" >
-  <div class="pace" :class="{ 'active': isActive }"> {{ convertPace(pace) }} </div>
-      <div class="five" :class="{ 'active': isActive }"> {{ convertTime5k(pace * 5) }} </div>
-      <div class="ten" :class="{ 'active': isActive }"> {{ convertTime(pace * 10) }} </div>
-      <div class="half" :class="{ 'active': isActive }"> {{ convertTime(pace * 21.0975) }} </div>
-      <div class="full" :class="{ 'active': isActive }"> {{ convertTime(pace * 42.195) }} </div>
-</div>
+  <div @click="toggleActive()">
+    <div class="pace" :class="{ active: active }">
+      {{ convertPace(pace) }}
+    </div>
+    <div class="five" :class="{ active: active }">
+      {{ convertTime5k(pace * 5) }}
+    </div>
+    <div class="ten" :class="{ active: active }">
+      {{ convertTime(pace * 10) }}
+    </div>
+    <div class="half" :class="{ active: active }">
+      {{ convertTime(pace * 21.0975) }}
+    </div>
+    <div class="full" :class="{ active: active }">
+      {{ convertTime(pace * 42.195) }}
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "kmPace",
+  name: "KmPaceRow",
   components: {},
   props: {
     pace: Number,
     unit: Number,
-    isActive: false
+  },
+  data() {
+    return {
+      active: false,
+    };
   },
   methods: {
-    convertPace: function(value) {
+    convertPace: function (value) {
       var date = new Date(null);
       date.setSeconds(value);
       return date.toISOString().substr(14, 5);
     },
-    convertTime5k: function(value) {
+    convertTime5k: function (value) {
       var date = new Date(null);
       date.setSeconds(value);
       return date.toISOString().substr(14, 5);
     },
-    convertTime: function(value) {
+    convertTime: function (value) {
       var date = new Date(null);
       date.setSeconds(value);
       return date.toISOString().substr(11, 8);
     },
-    toggleStyle: function(value) {
-      value.isActive = !value.isActive;
+    toggleActive: function () {
+      this.active = !this.active;
     },
-    toggleActive: function() {
-      this.isActive = !this.isActive;
-    }
-  }
+  },
 };
 </script>
 

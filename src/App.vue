@@ -1,10 +1,10 @@
 <template>
-<div class="wrapper">
-  <header>
-    <img src="https://res.cloudinary.com/rlntlss/image/upload/v1532549706/pace2.svg" width="389px" height="100px" >
-  </header>
+  <div class="wrapper">
+    <header>
+      <img src="@/assets/pace2.svg" alt="Pace Chart" width="389" height="100" />
+    </header>
     <Chart></Chart>
-</div>
+  </div>
 </template>
 
 <script>
@@ -13,8 +13,8 @@ import Chart from "./components/Chart.vue";
 export default {
   name: "app",
   components: {
-    Chart
-  }
+    Chart,
+  },
 };
 </script>
 

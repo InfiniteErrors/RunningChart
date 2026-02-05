@@ -1,33 +1,36 @@
 <template>
   <div>
     <nav>
-    <button v-on:click="unit = 0" type="submit">🔥 Kilometres</button>
-    <button v-on:click="unit = 1" type="submit">🔥 Miles</button>
+      <button v-on:click="unit = 0" type="submit">🔥 Kilometres</button>
+      <button v-on:click="unit = 1" type="submit">🔥 Miles</button>
     </nav>
     <div v-if="unit === 0" class="row top">
-      <div> 1km </div>
-      <div> 5km </div>
-      <div> 10km </div>
-      <div> 21.1km </div>
-      <div> 42.2km </div>
+      <div>1km</div>
+      <div>5km</div>
+      <div>10km</div>
+      <div>21.1km</div>
+      <div>42.2km</div>
     </div>
 
     <div v-if="unit === 1" class="row top">
-      <div> 1 Mile </div>
-      <div> 3.1m </div>
-      <div> 6.2m</div>
-      <div> 13.1m</div>
-      <div> 26.2m </div>
+      <div>1 Mile</div>
+      <div>3.1m</div>
+      <div>6.2m</div>
+      <div>13.1m</div>
+      <div>26.2m</div>
     </div>
 
-    <div v-if="unit === 0" v-for="kmPace in kmPaces">
-      <kmPace :unit="unit" :pace="kmPace" class="row"></kmPace>
-    </div>
+    <template v-if="unit === 0">
+      <div v-for="pace in kmPaces" :key="pace">
+        <kmPace :unit="unit" :pace="pace" class="row"></kmPace>
+      </div>
+    </template>
 
-    <div v-if="unit === 1" v-for="milePace in milePaces">
-      <milePace :unit="unit" :pace="milePace" class="row"></milePace>
-    </div>
-
+    <template v-if="unit === 1">
+      <div v-for="pace in milePaces" :key="pace">
+        <milePace :unit="unit" :pace="pace" class="row"></milePace>
+      </div>
+    </template>
   </div>
 </template>
 <script>
@@ -38,19 +41,19 @@ const range = (start, length) =>
   Array.from(Array(length).keys()).map((v, i) => start + i * 5);
 
 export default {
-  name: "km",
+  name: "PaceGrid",
   components: {
     kmPace,
-    milePace
+    milePace,
   },
-  data: function() {
+  data: function () {
     return {
       kmPaces: range(155, 75),
       milePaces: range(230, 75),
-      unit: 0
+      unit: 0,
     };
   },
-  methods: {}
+  methods: {},
 };
 </script>
 

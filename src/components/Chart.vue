@@ -7,10 +7,10 @@
 <script>
 import km from "./km.vue";
 export default {
-  name: "Chart",
+  name: "PaceChart",
   components: {
-    km
-  }
+    km,
+  },
 };
 </script>
 
