@@ -180,7 +180,7 @@ button:hover {
   }
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 500px) {
   .row {
     font-size: 0.72rem;
   }
@@ -202,7 +202,7 @@ button:hover {
   }
 }
 
-@media only screen and (max-width: 430px) {
+@media only screen and (max-width: 445px) {
   .scroll-inner {
     min-width: 600px;
   }

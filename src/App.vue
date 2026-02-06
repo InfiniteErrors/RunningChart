@@ -202,7 +202,7 @@ header {
   }
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 500px) {
   header {
     height: 80px;
     padding: 0.3rem 0;
