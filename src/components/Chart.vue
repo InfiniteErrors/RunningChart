@@ -1,6 +1,6 @@
 <template>
-  <div class="chart">
-    <km></km>
+  <div class="chart" :class="{ 'chart-dark': trackMode }">
+    <km :trackMode="trackMode"></km>
   </div>
 </template>
 
@@ -11,6 +11,9 @@ export default {
   components: {
     km,
   },
+  props: {
+    trackMode: Boolean,
+  },
 };
 </script>
 
@@ -19,5 +22,9 @@ export default {
 .chart {
   background-color: #ffffff;
   height: 100%;
+  transition: background-color 0.6s ease;
+}
+.chart-dark {
+  background-color: #1a1a2e;
 }
 </style>

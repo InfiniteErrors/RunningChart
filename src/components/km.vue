@@ -1,34 +1,36 @@
 <template>
-  <div>
+  <div :class="{ 'dark-mode': trackMode }">
     <nav>
       <button v-on:click="unit = 0" type="submit">🔥 Kilometres</button>
       <button v-on:click="unit = 1" type="submit">🔥 Miles</button>
     </nav>
-    <div v-if="unit === 0" class="row top">
+    <div v-if="unit === 0" class="row top" :class="{ 'row-6': trackMode, 'top-dark': trackMode }">
+      <div v-if="trackMode" class="split-header">400m</div>
       <div>1km</div>
       <div>5km</div>
       <div>10km</div>
       <div>21.1km</div>
-      <div>42.2km</div>
+      <div class="marathon-col">42.2km</div>
     </div>
 
-    <div v-if="unit === 1" class="row top">
+    <div v-if="unit === 1" class="row top" :class="{ 'row-6': trackMode, 'top-dark': trackMode }">
+      <div v-if="trackMode" class="split-header">400m</div>
       <div>1 Mile</div>
       <div>3.1m</div>
       <div>6.2m</div>
       <div>13.1m</div>
-      <div>26.2m</div>
+      <div class="marathon-col">26.2m</div>
     </div>
 
     <template v-if="unit === 0">
       <div v-for="pace in kmPaces" :key="pace">
-        <kmPace :unit="unit" :pace="pace" class="row"></kmPace>
+        <kmPace :unit="unit" :pace="pace" :trackMode="trackMode" class="row" :class="{ 'row-6': trackMode }"></kmPace>
       </div>
     </template>
 
     <template v-if="unit === 1">
       <div v-for="pace in milePaces" :key="pace">
-        <milePace :unit="unit" :pace="pace" class="row"></milePace>
+        <milePace :unit="unit" :pace="pace" :trackMode="trackMode" class="row" :class="{ 'row-6': trackMode }"></milePace>
       </div>
     </template>
   </div>
@@ -46,10 +48,13 @@ export default {
     kmPace,
     milePace,
   },
+  props: {
+    trackMode: Boolean,
+  },
   data: function () {
     return {
-      kmPaces: range(155, 75),
-      milePaces: range(230, 75),
+      kmPaces: range(130, 80),
+      milePaces: range(210, 80),
       unit: 0,
     };
   },
@@ -64,11 +69,14 @@ h1 {
 }
 nav {
   display: grid;
-  grid-template-columns: 150px 150px;
+  grid-template-columns: 1fr 1fr;
   grid-gap: 0.5rem;
   justify-content: center;
   align-content: center;
   margin: 0rem 0 1rem 0;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .row {
   display: grid;
@@ -76,6 +84,13 @@ nav {
   font-size: 1.2rem;
   text-align: center;
   color: #6c6c6c;
+  transition: grid-template-columns 0.4s ease;
+}
+.row-6 {
+  grid-template-columns: repeat(6, 1fr);
+}
+.dark-mode .row {
+  color: #c0c0c0;
 }
 
 .top {
@@ -86,6 +101,16 @@ nav {
   color: #5c5c5c;
   position: sticky;
   top: 0;
+  transition: background-color 0.6s ease, color 0.6s ease;
+}
+.top-dark {
+  background-color: rgba(26, 26, 46, 0.95);
+  color: #e0e0e0;
+}
+
+.split-header {
+  color: #FF1493;
+  font-weight: 400;
 }
 
 button {
@@ -98,6 +123,11 @@ button {
   font-size: 1rem;
   color: #8c8c8c;
   outline: none;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+.dark-mode button {
+  color: #c0c0c0;
+  box-shadow: 0 2px 5px 0 hsla(0, 0%, 0%, 0.4);
 }
 
 button:focus {
@@ -110,19 +140,54 @@ button:hover {
   background-color: #ffc700;
   cursor: pointer;
 }
+.dark-mode button:hover {
+  background-color: #FF1493;
+  color: #fff;
+}
 
-@media only screen and (max-width: 445px) {
+@media only screen and (max-width: 600px) {
   .row {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+  }
+  .row-6 {
+    font-size: 0.78rem;
   }
   .top {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    height: 2.5rem;
   }
   nav {
-    grid-template-columns: 125px 125px;
+    max-width: 270px;
   }
-  img {
-    width: 300px;
+  button {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.3rem 4px 0.3rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .row {
+    font-size: 0.72rem;
+  }
+  .row-6 {
+    grid-template-columns: repeat(5, 1fr);
+    font-size: 0.72rem;
+  }
+  .row-6 .marathon-col {
+    display: none;
+  }
+  .top {
+    font-size: 0.8rem;
+    height: 2.2rem;
+  }
+  nav {
+    max-width: 240px;
+    grid-gap: 0.3rem;
+    margin-bottom: 0.5rem;
+  }
+  button {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.2rem 3px 0.2rem;
   }
 }
 </style>
