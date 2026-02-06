@@ -1,5 +1,8 @@
 <template>
-  <div @click="toggleActive()">
+  <div @click="toggleActive()" :class="{ 'dark-row': trackMode }">
+    <div v-if="trackMode" class="split" :class="{ active: active }">
+      {{ convertPace(pace * 0.24855) }}
+    </div>
     <div class="pace" :class="{ active: active }">
       {{ convertPace(pace) }}
     </div>
@@ -12,7 +15,7 @@
     <div class="half" :class="{ active: active }">
       {{ convertTime(pace * 13.1094) }}
     </div>
-    <div class="full" :class="{ active: active }">
+    <div class="full marathon-col" :class="{ active: active }">
       {{ convertTime(pace * 26.2188) }}
     </div>
   </div>
@@ -25,6 +28,7 @@ export default {
   props: {
     pace: Number,
     unit: Number,
+    trackMode: Boolean,
   },
   data() {
     return {
@@ -55,4 +59,96 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style></style>
+<style>
+.pace,
+.five,
+.ten,
+.half,
+.full,
+.split {
+  padding: 0.5rem 0 0.5rem 0;
+  user-select: none;
+  cursor: pointer;
+  transition: background-color 0.6s ease, color 0.6s ease;
+}
+
+.pace {
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.five {
+  width: 100%;
+  background-color: #eeeeee;
+}
+
+.ten {
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.half {
+  width: 100%;
+  background-color: #eeeeee;
+}
+
+.full {
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.split {
+  width: 100%;
+  background-color: #eeeeee;
+  color: #FF1493;
+  font-weight: 400;
+}
+
+/* Dark mode overrides */
+.dark-row .pace,
+.dark-row .ten,
+.dark-row .full {
+  background-color: #1a1a2e;
+}
+.dark-row .five,
+.dark-row .half,
+.dark-row .split {
+  background-color: #16213e;
+}
+.dark-row .split {
+  color: #FF1493;
+}
+
+.active {
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  background-color: rgba(255, 199, 0, 0.6);
+  color: #000000;
+}
+.dark-row .active {
+  background-color: rgba(255, 20, 147, 0.4);
+  color: #ffffff;
+}
+
+@media only screen and (max-width: 600px) {
+  .pace,
+  .five,
+  .ten,
+  .half,
+  .full,
+  .split {
+    padding: 0.35rem 0;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .pace,
+  .five,
+  .ten,
+  .half,
+  .full,
+  .split {
+    padding: 0.25rem 0;
+  }
+}
+</style>
