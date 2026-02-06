@@ -83,6 +83,8 @@ h1 {
 }
 .wrapper {
   display: grid;
+  max-width: 100vw;
+  overflow-x: hidden;
   transition: background-color 0.6s ease, color 0.6s ease;
 }
 .wrapper.dark-mode {
@@ -113,8 +115,10 @@ header {
 .track-mode-tab {
   position: fixed;
   left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  height: fit-content;
   z-index: 100;
   background-color: #ffc700;
   color: #333;

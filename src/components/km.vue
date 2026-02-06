@@ -4,35 +4,39 @@
       <button v-on:click="unit = 0" type="submit">🔥 Kilometres</button>
       <button v-on:click="unit = 1" type="submit">🔥 Miles</button>
     </nav>
-    <div v-if="unit === 0" class="row top" :class="{ 'row-6': trackMode, 'top-dark': trackMode }">
-      <div v-if="trackMode" class="split-header">400m</div>
-      <div>1km</div>
-      <div>5km</div>
-      <div>10km</div>
-      <div>21.1km</div>
-      <div class="marathon-col">42.2km</div>
-    </div>
+    <div class="scroll-container">
+      <div class="scroll-inner" :class="{ 'scroll-inner-6': trackMode }">
+        <div v-if="unit === 0" class="row top" :class="{ 'row-6': trackMode, 'top-dark': trackMode }">
+          <div v-if="trackMode" class="split-header">400m</div>
+          <div>1km</div>
+          <div>5km</div>
+          <div>10km</div>
+          <div>21.1km</div>
+          <div class="marathon-col">42.2km</div>
+        </div>
 
-    <div v-if="unit === 1" class="row top" :class="{ 'row-6': trackMode, 'top-dark': trackMode }">
-      <div v-if="trackMode" class="split-header">400m</div>
-      <div>1 Mile</div>
-      <div>3.1m</div>
-      <div>6.2m</div>
-      <div>13.1m</div>
-      <div class="marathon-col">26.2m</div>
-    </div>
+        <div v-if="unit === 1" class="row top" :class="{ 'row-6': trackMode, 'top-dark': trackMode }">
+          <div v-if="trackMode" class="split-header">400m</div>
+          <div>1 Mile</div>
+          <div>3.1m</div>
+          <div>6.2m</div>
+          <div>13.1m</div>
+          <div class="marathon-col">26.2m</div>
+        </div>
 
-    <template v-if="unit === 0">
-      <div v-for="pace in kmPaces" :key="pace">
-        <kmPace :unit="unit" :pace="pace" :trackMode="trackMode" class="row" :class="{ 'row-6': trackMode }"></kmPace>
+        <template v-if="unit === 0">
+          <div v-for="pace in kmPaces" :key="pace">
+            <kmPace :unit="unit" :pace="pace" :trackMode="trackMode" class="row" :class="{ 'row-6': trackMode }"></kmPace>
+          </div>
+        </template>
+
+        <template v-if="unit === 1">
+          <div v-for="pace in milePaces" :key="pace">
+            <milePace :unit="unit" :pace="pace" :trackMode="trackMode" class="row" :class="{ 'row-6': trackMode }"></milePace>
+          </div>
+        </template>
       </div>
-    </template>
-
-    <template v-if="unit === 1">
-      <div v-for="pace in milePaces" :key="pace">
-        <milePace :unit="unit" :pace="pace" :trackMode="trackMode" class="row" :class="{ 'row-6': trackMode }"></milePace>
-      </div>
-    </template>
+    </div>
   </div>
 </template>
 <script>
@@ -78,6 +82,17 @@ nav {
   margin-left: auto;
   margin-right: auto;
 }
+
+/* Scroll container — only activates at small breakpoint */
+.scroll-container {
+  overflow-x: auto;
+  max-width: 100vw;
+  -webkit-overflow-scrolling: touch;
+}
+.scroll-inner {
+  min-width: 100%;
+}
+
 .row {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -170,11 +185,7 @@ button:hover {
     font-size: 0.72rem;
   }
   .row-6 {
-    grid-template-columns: repeat(5, 1fr);
     font-size: 0.72rem;
-  }
-  .row-6 .marathon-col {
-    display: none;
   }
   .top {
     font-size: 0.8rem;
@@ -188,6 +199,25 @@ button:hover {
   button {
     font-size: 0.75rem;
     padding: 0.35rem 0.2rem 3px 0.2rem;
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  .scroll-inner {
+    min-width: 600px;
+  }
+  .scroll-inner-6 {
+    min-width: 660px;
+  }
+  .row {
+    font-size: 0.85rem;
+  }
+  .row-6 {
+    grid-template-columns: repeat(6, 1fr);
+    font-size: 0.8rem;
+  }
+  .top {
+    font-size: 0.9rem;
   }
 }
 </style>
