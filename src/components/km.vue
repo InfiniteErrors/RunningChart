@@ -5,8 +5,9 @@
       <button v-on:click="unit = 1" type="submit">🔥 Miles</button>
     </nav>
     <div class="scroll-container">
-      <div class="scroll-inner" :class="{ 'scroll-inner-6': trackMode }">
-        <div v-if="unit === 0" class="row top" :class="{ 'row-6': trackMode, 'top-dark': trackMode }">
+      <div class="scroll-inner" :class="{ 'scroll-inner-extra': trackMode || dreadmillMode }">
+        <div v-if="unit === 0" class="row top" :class="[colClass, { 'top-dark': trackMode }]">
+          <div v-if="dreadmillMode" class="speed-header">MPH</div>
           <div v-if="trackMode" class="split-header">400m</div>
           <div>1km</div>
           <div>5km</div>
@@ -15,7 +16,8 @@
           <div class="marathon-col">42.2km</div>
         </div>
 
-        <div v-if="unit === 1" class="row top" :class="{ 'row-6': trackMode, 'top-dark': trackMode }">
+        <div v-if="unit === 1" class="row top" :class="[colClass, { 'top-dark': trackMode }]">
+          <div v-if="dreadmillMode" class="speed-header">MPH</div>
           <div v-if="trackMode" class="split-header">400m</div>
           <div>1 Mile</div>
           <div>3.1m</div>
@@ -26,13 +28,13 @@
 
         <template v-if="unit === 0">
           <div v-for="pace in kmPaces" :key="pace">
-            <kmPace :unit="unit" :pace="pace" :trackMode="trackMode" class="row" :class="{ 'row-6': trackMode }"></kmPace>
+            <kmPace :unit="unit" :pace="pace" :trackMode="trackMode" :dreadmillMode="dreadmillMode" class="row" :class="colClass"></kmPace>
           </div>
         </template>
 
         <template v-if="unit === 1">
           <div v-for="pace in milePaces" :key="pace">
-            <milePace :unit="unit" :pace="pace" :trackMode="trackMode" class="row" :class="{ 'row-6': trackMode }"></milePace>
+            <milePace :unit="unit" :pace="pace" :trackMode="trackMode" :dreadmillMode="dreadmillMode" class="row" :class="colClass"></milePace>
           </div>
         </template>
       </div>
@@ -54,6 +56,13 @@ export default {
   },
   props: {
     trackMode: Boolean,
+    dreadmillMode: Boolean,
+  },
+  computed: {
+    colClass() {
+      const cols = 5 + (this.trackMode ? 1 : 0) + (this.dreadmillMode ? 1 : 0);
+      return 'row-' + cols;
+    },
   },
   data: function () {
     return {
@@ -92,6 +101,9 @@ nav {
 .scroll-inner {
   min-width: 100%;
 }
+.scroll-inner-extra {
+  min-width: 100%;
+}
 
 .row {
   display: grid;
@@ -103,6 +115,9 @@ nav {
 }
 .row-6 {
   grid-template-columns: repeat(6, 1fr);
+}
+.row-7 {
+  grid-template-columns: repeat(7, 1fr);
 }
 .dark-mode .row {
   color: #c0c0c0;
@@ -125,6 +140,11 @@ nav {
 
 .split-header {
   color: #FF1493;
+  font-weight: 400;
+}
+
+.speed-header {
+  color: #00b4d8;
   font-weight: 400;
 }
 
@@ -167,6 +187,9 @@ button:hover {
   .row-6 {
     font-size: 0.78rem;
   }
+  .row-7 {
+    font-size: 0.72rem;
+  }
   .top {
     font-size: 1rem;
     height: 2.5rem;
@@ -187,6 +210,9 @@ button:hover {
   .row-6 {
     font-size: 0.72rem;
   }
+  .row-7 {
+    font-size: 0.65rem;
+  }
   .top {
     font-size: 0.8rem;
     height: 2.2rem;
@@ -206,7 +232,7 @@ button:hover {
   .scroll-inner {
     min-width: 600px;
   }
-  .scroll-inner-6 {
+  .scroll-inner-extra {
     min-width: 660px;
   }
   .row {
@@ -215,6 +241,10 @@ button:hover {
   .row-6 {
     grid-template-columns: repeat(6, 1fr);
     font-size: 0.8rem;
+  }
+  .row-7 {
+    grid-template-columns: repeat(7, 1fr);
+    font-size: 0.75rem;
   }
   .top {
     font-size: 0.9rem;

@@ -5,6 +5,11 @@
       <span class="track-mode-label">T R A C K &nbsp; M O D E</span>
     </div>
 
+    <!-- Dreadmill Mode vertical accordion button -->
+    <div class="dreadmill-mode-tab" :class="{ active: dreadmillMode }" @click="toggleDreadmillMode">
+      <span class="dreadmill-mode-label">D R E A D M I L L &nbsp; M O D E</span>
+    </div>
+
     <!-- Let's go! flash overlay -->
     <div
       v-if="showFlash"
@@ -37,7 +42,7 @@
         </text>
       </svg>
     </header>
-    <Chart :trackMode="trackMode"></Chart>
+    <Chart :trackMode="trackMode" :dreadmillMode="dreadmillMode"></Chart>
   </div>
 </template>
 
@@ -52,6 +57,7 @@ export default {
   data() {
     return {
       trackMode: false,
+      dreadmillMode: false,
       showFlash: false,
     };
   },
@@ -61,6 +67,9 @@ export default {
       if (this.trackMode) {
         this.showFlash = true;
       }
+    },
+    toggleDreadmillMode() {
+      this.dreadmillMode = !this.dreadmillMode;
     },
   },
 };
@@ -145,6 +154,37 @@ header {
   pointer-events: none;
 }
 
+/* Dreadmill Mode vertical tab */
+.dreadmill-mode-tab {
+  position: fixed;
+  left: 0;
+  top: calc(50% + 80px);
+  z-index: 100;
+  background-color: #ffc700;
+  color: #333;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  padding: 14px 6px;
+  cursor: pointer;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.3s ease;
+  user-select: none;
+}
+.dreadmill-mode-tab:hover {
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.3);
+}
+.dreadmill-mode-tab.active {
+  background-color: #00b4d8;
+  color: #fff;
+}
+.dreadmill-mode-label {
+  pointer-events: none;
+}
+
 /* Let's go! flash overlay */
 .flash-overlay {
   position: fixed;
@@ -196,6 +236,11 @@ header {
     font-size: 0.6rem;
     letter-spacing: 1px;
   }
+  .dreadmill-mode-tab {
+    padding: 10px 5px;
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+  }
   .flash-overlay {
     font-size: 2rem;
     letter-spacing: 2px;
@@ -215,6 +260,11 @@ header {
     font-size: 0.55rem;
     letter-spacing: 1px;
   }
+  .dreadmill-mode-tab {
+    padding: 8px 4px;
+    font-size: 0.55rem;
+    letter-spacing: 1px;
+  }
   .flash-overlay {
     font-size: 1.5rem;
     letter-spacing: 1px;
@@ -223,6 +273,13 @@ header {
 
 @media only screen and (max-width: 360px) {
   .track-mode-tab {
+    padding: 6px 3px;
+    font-size: 0.45rem;
+    letter-spacing: 0px;
+    border-radius: 0 4px 4px 0;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
+  }
+  .dreadmill-mode-tab {
     padding: 6px 3px;
     font-size: 0.45rem;
     letter-spacing: 0px;

@@ -1,6 +1,6 @@
 <template>
   <div class="chart" :class="{ 'chart-dark': trackMode }">
-    <km :trackMode="trackMode"></km>
+    <km :trackMode="trackMode" :dreadmillMode="dreadmillMode"></km>
   </div>
 </template>
 
@@ -13,6 +13,7 @@ export default {
   },
   props: {
     trackMode: Boolean,
+    dreadmillMode: Boolean,
   },
 };
 </script>
