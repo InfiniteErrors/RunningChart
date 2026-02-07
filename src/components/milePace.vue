@@ -1,5 +1,8 @@
 <template>
   <div @click="toggleActive()" :class="{ 'dark-row': trackMode }">
+    <div v-if="dreadmillMode" class="speed" :class="{ active: active }">
+      {{ convertSpeed(pace) }}
+    </div>
     <div v-if="trackMode" class="split" :class="{ active: active }">
       {{ convertPace(pace * 0.24855) }}
     </div>
@@ -29,6 +32,7 @@ export default {
     pace: Number,
     unit: Number,
     trackMode: Boolean,
+    dreadmillMode: Boolean,
   },
   data() {
     return {
@@ -51,6 +55,10 @@ export default {
       date.setSeconds(value);
       return date.toISOString().substr(11, 8);
     },
+    convertSpeed: function (secsPerMile) {
+      var mph = 3600 / secsPerMile;
+      return mph.toFixed(1);
+    },
     toggleActive: function () {
       this.active = !this.active;
     },
@@ -65,7 +73,8 @@ export default {
 .ten,
 .half,
 .full,
-.split {
+.split,
+.speed {
   padding: 0.5rem 0 0.5rem 0;
   user-select: none;
   cursor: pointer;
@@ -104,6 +113,13 @@ export default {
   font-weight: 400;
 }
 
+.speed {
+  width: 100%;
+  background-color: #eeeeee;
+  color: #00b4d8;
+  font-weight: 400;
+}
+
 /* Dark mode overrides */
 .dark-row .pace,
 .dark-row .ten,
@@ -112,11 +128,15 @@ export default {
 }
 .dark-row .five,
 .dark-row .half,
-.dark-row .split {
+.dark-row .split,
+.dark-row .speed {
   background-color: #16213e;
 }
 .dark-row .split {
   color: #FF1493;
+}
+.dark-row .speed {
+  color: #00b4d8;
 }
 
 .active {
@@ -136,7 +156,8 @@ export default {
   .ten,
   .half,
   .full,
-  .split {
+  .split,
+  .speed {
     padding: 0.35rem 0;
   }
 }
@@ -147,7 +168,8 @@ export default {
   .ten,
   .half,
   .full,
-  .split {
+  .split,
+  .speed {
     padding: 0.25rem 0;
   }
 }
