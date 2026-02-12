@@ -7,7 +7,7 @@
     <div class="scroll-container">
       <div class="scroll-inner" :class="{ 'scroll-inner-extra': trackMode || dreadmillMode }">
         <div v-if="unit === 0" class="row top" :class="[colClass, { 'top-dark': trackMode }]">
-          <div v-if="dreadmillMode" class="speed-header">MPH</div>
+          <div v-if="dreadmillMode" class="speed-header">KPH</div>
           <div v-if="trackMode" class="split-header">400m</div>
           <div>1km</div>
           <div>5km</div>

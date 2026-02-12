@@ -56,8 +56,8 @@ export default {
       return date.toISOString().substr(11, 8);
     },
     convertSpeed: function (secsPerKm) {
-      var mph = (3600 / secsPerKm) / 1.60934;
-      return mph.toFixed(1);
+      var kph = 3600 / secsPerKm;
+      return kph.toFixed(1);
     },
     toggleActive: function () {
       this.active = !this.active;
