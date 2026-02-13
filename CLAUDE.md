@@ -46,6 +46,18 @@ Component hierarchy: `App → Chart → km → kmPace / milePace`
 - **Data flow:** Props down, no event emission back up
 - **Path alias:** `@` maps to `./src`
 
+## Vue Best Practices
+
+- **SFC order:** `<template>`, then `<script>`, then `<style>` — keep this order in all components
+- **Directive shorthands:** Prefer `@click` over `v-on:click` and `:prop` over `v-bind:prop` — be consistent (some files still use the long form)
+- **Props typing:** Use constructor types (`Boolean`, `Number`, `String`). Add `required: true` or `default` values when the component can't function without a prop
+- **Computed over methods for derived state:** Use `computed` for values derived from reactive data (see `colClass` in `km.vue`). Use `methods` only when the logic needs arguments or triggers side effects
+- **Use `const`/`let` instead of `var`** in all new code
+- **Shared logic:** `kmPace.vue` and `milePace.vue` contain duplicate methods (`convertPace`, `convertTime`, `convertTime5k`, `toggleActive`) and identical styles — extract shared helpers if adding more duplication
+- **`v-for` keys:** Always provide a unique `:key` — current usage of the `pace` value is correct since each pace is unique in the range
+- **Keep templates simple:** Move complex expressions into `computed` properties or methods rather than inlining in the template
+- **One-way data flow:** Props go down only. If a child needs to communicate up, use `$emit` and declare events in an `emits` option
+
 ## Key Colors
 
 - Primary: `#FFC700` (golden yellow — normal mode)
