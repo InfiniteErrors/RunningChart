@@ -27,13 +27,13 @@
         </div>
 
         <template v-if="unit === 0">
-          <div v-for="pace in kmPaces" :key="pace">
+          <div v-for="pace in kmPaces" :key="pace" class="pace-row-wrapper">
             <kmPace :unit="unit" :pace="pace" :trackMode="trackMode" :dreadmillMode="dreadmillMode" class="row" :class="colClass"></kmPace>
           </div>
         </template>
 
         <template v-if="unit === 1">
-          <div v-for="pace in milePaces" :key="pace">
+          <div v-for="pace in milePaces" :key="pace" class="pace-row-wrapper">
             <milePace :unit="unit" :pace="pace" :trackMode="trackMode" :dreadmillMode="dreadmillMode" class="row" :class="colClass"></milePace>
           </div>
         </template>
@@ -103,6 +103,11 @@ nav {
 }
 .scroll-inner-extra {
   min-width: 100%;
+}
+
+.pace-row-wrapper {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 35px;
 }
 
 .row {
