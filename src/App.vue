@@ -1,13 +1,13 @@
 <template>
   <div class="wrapper" :class="{ 'dark-mode': trackMode }">
-    <!-- Track Mode vertical accordion button -->
-    <div class="track-mode-tab" :class="{ active: trackMode }" @click="toggleTrackMode">
-      <span class="track-mode-label">T R A C K &nbsp; M O D E</span>
-    </div>
-
-    <!-- Dreadmill Mode vertical accordion button -->
-    <div class="dreadmill-mode-tab" :class="{ active: dreadmillMode }" @click="toggleDreadmillMode">
-      <span class="dreadmill-mode-label">D R E A D M I L L &nbsp; M O D E</span>
+    <!-- Mode toggle tabs -->
+    <div class="mode-tabs">
+      <div class="track-mode-tab" :class="{ active: trackMode }" @click="toggleTrackMode">
+        <span class="track-mode-label">T R A C K &nbsp; M O D E</span>
+      </div>
+      <div class="dreadmill-mode-tab" :class="{ active: dreadmillMode }" @click="toggleDreadmillMode">
+        <span class="dreadmill-mode-label">D R E A D M I L L &nbsp; M O D E</span>
+      </div>
     </div>
 
     <!-- Let's go! flash overlay -->
@@ -120,15 +120,24 @@ header {
   transition: stroke 0.6s ease, fill 0.6s ease;
 }
 
-/* Track Mode vertical tab */
-.track-mode-tab {
+/* Mode tabs container */
+.mode-tabs {
   position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
-  margin: auto 0;
-  height: fit-content;
   z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 12px;
+  pointer-events: none;
+}
+
+/* Track Mode vertical tab */
+.track-mode-tab {
+  pointer-events: auto;
   background-color: #ffc700;
   color: #333;
   writing-mode: vertical-rl;
@@ -156,10 +165,7 @@ header {
 
 /* Dreadmill Mode vertical tab */
 .dreadmill-mode-tab {
-  position: fixed;
-  left: 0;
-  top: calc(50% + 80px);
-  z-index: 100;
+  pointer-events: auto;
   background-color: #ffc700;
   color: #333;
   writing-mode: vertical-rl;
@@ -272,6 +278,9 @@ header {
 }
 
 @media only screen and (max-width: 360px) {
+  .mode-tabs {
+    gap: 8px;
+  }
   .track-mode-tab {
     padding: 6px 3px;
     font-size: 0.45rem;
